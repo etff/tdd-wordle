@@ -40,7 +40,9 @@ class WordTest {
 
         final List<Matching> actual = word.match(compareWord);
 
-        assertThat(actual).containsExactly(Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN);
+        assertThat(actual).containsExactly(
+                Matching.GREEN, Matching.GREEN, Matching.GREEN,
+                Matching.GREEN, Matching.GREEN);
     }
 
     @DisplayName("입력한 단어와 주어진 단어의 영자가 일치하는 것이 없으면 흰 결과를 리턴한다.")
@@ -53,7 +55,9 @@ class WordTest {
 
         final List<Matching> actual = word.match(compareWord);
 
-        assertThat(actual).containsExactly(Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE);
+        assertThat(actual).containsExactly(
+                Matching.WHITE, Matching.WHITE, Matching.WHITE,
+                Matching.WHITE, Matching.WHITE);
     }
 
     @DisplayName("입력한 단어와 주어진 단어의 영자가 동일 위치는 아니지만, 다른 위치에 있으면 노란을 리턴한다.")
@@ -66,6 +70,8 @@ class WordTest {
 
         final List<Matching> actual = word.match(compareWord);
 
-        assertThat(actual).containsExactly(Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.YELLOW, Matching.YELLOW);
+        assertThat(actual).containsExactly(
+                Matching.WHITE, Matching.WHITE, Matching.WHITE,
+                Matching.YELLOW, Matching.YELLOW);
     }
 }
