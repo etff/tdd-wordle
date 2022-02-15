@@ -1,9 +1,12 @@
 package wordle.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -26,5 +29,16 @@ class WordTest {
         assertThatThrownBy(() -> {
             new Word(givenWord);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력한 단어와 주어진 단어의 영자가 모두 동일하면 모두 초록색 결과를 리턴한다.")
+    @Test
+    void perfect_match() {
+        final String givenWord = "apple";
+        final Word word = new Word(givenWord);
+
+        List<Matching> actual = word.match(word);
+
+        assertThat(actual).containsExactly(Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN);
     }
 }
