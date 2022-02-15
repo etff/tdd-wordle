@@ -36,9 +36,23 @@ class WordTest {
     void perfect_match() {
         final String givenWord = "apple";
         final Word word = new Word(givenWord);
+        final Word compareWord = new Word(givenWord);
 
-        List<Matching> actual = word.match(word);
+        List<Matching> actual = word.match(compareWord);
 
         assertThat(actual).containsExactly(Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN);
+    }
+
+    @DisplayName("입력한 단어와 주어진 단어의 영자가 일치하는 것이 없으면 흰 결과를 리턴한다.")
+    @Test
+    void not_match_word() {
+        final String givenWord = "apple";
+        final String givenCompareWord = "sword";
+        final Word word = new Word(givenWord);
+        final Word compareWord = new Word(givenCompareWord);
+
+        List<Matching> actual = word.match(compareWord);
+
+        assertThat(actual).containsExactly(Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE);
     }
 }

@@ -33,6 +33,9 @@ public class Word {
         for (int i = 0; i < length; i++) {
             char originalCharacter = originalCharacters[i];
             char compareCharacter = compareCharacters[i];
+            if (!this.value.contains(String.valueOf(compareCharacter))) {
+                result.add(Matching.WHITE);
+            }
             if (originalCharacter == compareCharacter) {
                 result.add(Matching.GREEN);
             }
