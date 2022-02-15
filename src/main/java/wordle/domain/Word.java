@@ -20,7 +20,7 @@ public class Word {
             throw new IllegalArgumentException(EMPTY_NOT_ALLOWED);
         }
         if (value.length() != WORD_LENGTH) {
-            throw new IllegalArgumentException(EMPTY_NOT_ALLOWED);
+            throw new IllegalArgumentException(WORD_LENGTH_REQUIRED);
         }
     }
 
@@ -33,13 +33,28 @@ public class Word {
         for (int i = 0; i < length; i++) {
             char originalCharacter = originalCharacters[i];
             char compareCharacter = compareCharacters[i];
-            if (!this.value.contains(String.valueOf(compareCharacter))) {
+            if (hasNoCharacters(compareCharacter)) {
                 result.add(Matching.WHITE);
             }
-            if (originalCharacter == compareCharacter) {
+            if (hasCharactersAndNotSameCharacter(originalCharacter, compareCharacter)) {
+                result.add(Matching.YELLOW);
+            }
+            if (isSameCharacter(originalCharacter, compareCharacter)) {
                 result.add(Matching.GREEN);
             }
         }
         return Collections.unmodifiableList(result);
+    }
+
+    private boolean hasNoCharacters(char compareCharacter) {
+        return !this.value.contains(String.valueOf(compareCharacter));
+    }
+
+    private boolean hasCharactersAndNotSameCharacter(char originalCharacter, char compareCharacter) {
+        return this.value.contains(String.valueOf(compareCharacter)) && originalCharacter != compareCharacter;
+    }
+
+    private boolean isSameCharacter(char originalCharacter, char compareCharacter) {
+        return originalCharacter == compareCharacter;
     }
 }

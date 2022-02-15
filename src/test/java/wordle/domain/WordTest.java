@@ -55,4 +55,17 @@ class WordTest {
 
         assertThat(actual).containsExactly(Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE);
     }
+
+    @DisplayName("입력한 단어와 주어진 단어의 영자가 동일 위치는 아니지만, 다른 위치에 있으면 노란을 리턴한다.")
+    @Test
+    void match_different_position_word() {
+        final String givenWord = "apple";
+        final String givenCompareWord = "korea";
+        final Word word = new Word(givenWord);
+        final Word compareWord = new Word(givenCompareWord);
+
+        List<Matching> actual = word.match(compareWord);
+
+        assertThat(actual).containsExactly(Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.YELLOW, Matching.YELLOW);
+    }
 }
