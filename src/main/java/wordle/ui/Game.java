@@ -18,9 +18,13 @@ public class Game {
 
     public void start() {
         final Word word = new Word("apple");
-        final Word compareWord = new Word(inputView.inputCompareWord());
-
-        final List<Matching> match = word.match(compareWord);
-        outputView.printResult(match);
+        int count = 6;
+        outputView.initMessage();
+        while (count > 0) {
+            final Word compareWord = new Word(inputView.inputCompareWord());
+            final List<Matching> match = word.match(compareWord);
+            outputView.printResult(match);
+            count--;
+        }
     }
 }
