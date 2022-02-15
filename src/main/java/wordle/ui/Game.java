@@ -2,9 +2,11 @@ package wordle.ui;
 
 import wordle.domain.Matching;
 import wordle.domain.Word;
+import wordle.utils.FileReader;
 import wordle.views.InputView;
 import wordle.views.OutputView;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Game {
@@ -17,7 +19,7 @@ public class Game {
     }
 
     public void start() {
-        final Word word = new Word("apple");
+        final Word word = new Word(getRandomWord());
         int count = 6;
         outputView.initMessage();
         while (count > 0) {
@@ -26,5 +28,13 @@ public class Game {
             outputView.printResult(match);
             count--;
         }
+    }
+
+    private String getRandomWord() {
+        List<String> words = FileReader.readWords();
+        Collections.shuffle(words);
+        return words.stream()
+                .findFirst()
+                .orElseThrow(IllegalStateException::new);
     }
 }
