@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
+    private static final int GAME_END_COUNT = 5;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -25,6 +26,10 @@ public class Game {
         while (count > 0) {
             final Word compareWord = new Word(inputView.inputCompareWord());
             final List<Matching> match = word.match(compareWord);
+            if (checkGameEnd(match)) {
+                outputView.printWinner();
+                break;
+            }
             outputView.printResult(match);
             count--;
         }
@@ -37,4 +42,12 @@ public class Game {
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }
+
+    private boolean checkGameEnd(List<Matching> matches) {
+        long matchCount = matches.stream()
+                .filter(it -> it == Matching.GREEN)
+                .count();
+        return GAME_END_COUNT == matchCount;
+    }
+
 }

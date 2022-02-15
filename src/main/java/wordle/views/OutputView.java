@@ -17,4 +17,8 @@ public class OutputView {
         System.out.println("WORDLE을 6번 만에 맞춰 보세요.");
         System.out.println("시도의 결과는 타일의 색 변화로 나타납니다.");
     }
+
+    public void printWinner() {
+        System.out.println("축하합니다! 모든 단어를 맞췄습니다.");
+    }
 }
