@@ -38,7 +38,7 @@ class WordTest {
         final Word word = new Word(givenWord);
         final Word compareWord = new Word(givenWord);
 
-        List<Matching> actual = word.match(compareWord);
+        final List<Matching> actual = word.match(compareWord);
 
         assertThat(actual).containsExactly(Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN, Matching.GREEN);
     }
@@ -51,7 +51,7 @@ class WordTest {
         final Word word = new Word(givenWord);
         final Word compareWord = new Word(givenCompareWord);
 
-        List<Matching> actual = word.match(compareWord);
+        final List<Matching> actual = word.match(compareWord);
 
         assertThat(actual).containsExactly(Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.WHITE);
     }
@@ -64,7 +64,7 @@ class WordTest {
         final Word word = new Word(givenWord);
         final Word compareWord = new Word(givenCompareWord);
 
-        List<Matching> actual = word.match(compareWord);
+        final List<Matching> actual = word.match(compareWord);
 
         assertThat(actual).containsExactly(Matching.WHITE, Matching.WHITE, Matching.WHITE, Matching.YELLOW, Matching.YELLOW);
     }

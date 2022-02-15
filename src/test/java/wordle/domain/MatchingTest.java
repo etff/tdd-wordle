@@ -13,4 +13,19 @@ class MatchingTest {
         assertThat(Matching.values())
                 .containsExactly(Matching.WHITE, Matching.GREEN, Matching.YELLOW);
     }
+
+    @Test
+    void white() {
+        assertThat(Matching.WHITE.getValue()).isEqualTo("⬜");
+    }
+
+    @Test
+    void green() {
+        assertThat(Matching.GREEN.getValue()).isEqualTo("\uD83D\uDFE9");
+    }
+
+    @Test
+    void yellow() {
+        assertThat(Matching.YELLOW.getValue()).isEqualTo("\uD83D\uDFE8");
+    }
 }
